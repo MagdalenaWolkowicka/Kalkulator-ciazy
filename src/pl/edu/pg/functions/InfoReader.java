@@ -24,13 +24,13 @@ public class InfoReader {
         }
     }
 
-    public void showInfo() {
+    public void askAboutTheMonthOfPregnancyAndShowInfo() {
         InfoReader infoReader = new InfoReader();
         System.out.println("Podaj miesiąc ciąży: ");
         Scanner scanner = new Scanner(System.in);
         int pregnancyMonth = scanner.nextInt();
         if (pregnancyMonth >= 1 && pregnancyMonth <= 9) {
-            checkMonthNumber(infoReader, pregnancyMonth);
+            readPregnancyInfoFromFile(infoReader, pregnancyMonth);
         } else {
             System.out.println("Błędny numer miesiąca");
         }
@@ -40,10 +40,10 @@ public class InfoReader {
         InfoReader infoReader = new InfoReader();
         Period period = Period.between(firstDayOfTheLastMenstrual, currentDate);
         pregnancyMonth = (period.getMonths() + 1);
-        checkMonthNumber(infoReader, pregnancyMonth);
+        readPregnancyInfoFromFile(infoReader, pregnancyMonth);
     }
 
-    private void checkMonthNumber(InfoReader infoReader, int pregnancyMonth) {
+    private void readPregnancyInfoFromFile(InfoReader infoReader, int pregnancyMonth) {
         if (pregnancyMonth == 1) {
             infoReader.readFile("Miesiac1.txt");
         } else if (pregnancyMonth == 2) {

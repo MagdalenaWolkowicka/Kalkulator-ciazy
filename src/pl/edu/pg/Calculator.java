@@ -30,13 +30,22 @@ public class Calculator {
         firstDayOfTheLastMenstrual = LocalDate.parse(date);
     }
 
+    public boolean checkIfTheDateIsCorrect() {
+        if (firstDayOfTheLastMenstrual.isAfter(LocalDate.now())) {
+            System.out.println("Błędna data, spróbuj jeszcze raz.\n");
+            return true;
+        }
+        return false;
+    }
+
     public void actionMenu() {
         System.out.println("\nWybierz opcję: ");
         int option = scanner.nextInt();
         switch (option) {
             case 1:
                 questions();
-                stageOfPregnancy.calculatePregnancyWeekMonthTrimestr(firstDayOfTheLastMenstrual, LocalDate.now());
+                if (checkIfTheDateIsCorrect()) break;
+                StageOfPregnancy.calculatePregnancyWeekMonthTrimestr(stageOfPregnancy, firstDayOfTheLastMenstrual, LocalDate.now());
                 break;
             case 2:
                 dueDate.calculateDateOfBirth(firstDayOfTheLastMenstrual);
@@ -44,7 +53,7 @@ public class Calculator {
                 break;
             case 3:
                 if (firstDayOfTheLastMenstrual == null) {
-                    infoReader.showInfo();
+                    infoReader.askAboutTheMonthOfPregnancyAndShowInfo();
                 } else {
                     if (firstDayOfTheLastMenstrual.plusDays(280).isAfter(LocalDate.now())) {
                         infoReader.calculatePregnancyMonthAndShowInfo(firstDayOfTheLastMenstrual, LocalDate.now());

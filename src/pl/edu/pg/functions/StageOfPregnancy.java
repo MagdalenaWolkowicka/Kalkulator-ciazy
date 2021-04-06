@@ -6,14 +6,17 @@ import java.time.temporal.ChronoUnit;
 
 public class StageOfPregnancy {
 
-    public void calculatePregnancyWeekMonthTrimestr(LocalDate firstDayOfTheLastMenstrual, LocalDate currentDate) {
+    public static void calculatePregnancyWeekMonthTrimestr(StageOfPregnancy stageOfPregnancy, LocalDate firstDayOfTheLastMenstrual, LocalDate currentDate) {
         long weeksBetween = ChronoUnit.WEEKS.between(firstDayOfTheLastMenstrual, currentDate);
         long pregnancyWeek = (weeksBetween + 1);
         if (pregnancyWeek >= 3 && pregnancyWeek <= 42) {
             System.out.println(pregnancyWeek + " tydzień");
-            calculatePrengancyMonth(firstDayOfTheLastMenstrual, LocalDate.now());
-            calculatePrengancyTrimestr(firstDayOfTheLastMenstrual, LocalDate.now());
+            stageOfPregnancy.calculatePrengancyMonth(firstDayOfTheLastMenstrual, LocalDate.now());
+            stageOfPregnancy.calculatePrengancyTrimestr(firstDayOfTheLastMenstrual, LocalDate.now());
             System.out.println("Gratulacje!\n");
+        } else if (firstDayOfTheLastMenstrual.isAfter(LocalDate.now())) {
+            System.out.println("Błędna data, spróbuj jeszcze raz.\n");
+            return;
         } else {
             System.out.println("Nie jesteś w ciąży...\n");
         }
