@@ -45,7 +45,7 @@ public class Calculator {
             case 1:
                 questions();
                 if (checkIfTheDateIsCorrect()) break;
-                StageOfPregnancy.calculatePregnancyWeekMonthTrimestr(stageOfPregnancy, firstDayOfTheLastMenstrual, LocalDate.now());
+                stageOfPregnancy.showWeekMonthTrimestrInfo(firstDayOfTheLastMenstrual);
                 break;
             case 2:
                 dueDate.calculateDateOfBirth(firstDayOfTheLastMenstrual);

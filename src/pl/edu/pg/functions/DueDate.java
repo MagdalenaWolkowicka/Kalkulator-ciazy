@@ -2,6 +2,7 @@ package pl.edu.pg.functions;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class DueDate {

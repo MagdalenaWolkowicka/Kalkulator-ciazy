@@ -10,20 +10,6 @@ public class InfoReader {
 
     int pregnancyMonth;
 
-    public void readFile(String fileName) {
-        File file = new File(fileName);
-        Scanner scanner = null;
-        try {
-            scanner = new Scanner(file);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        while (scanner.hasNext()) {
-            String line = scanner.nextLine();
-            System.out.println(line);
-        }
-    }
-
     public void askAboutTheMonthOfPregnancyAndShowInfo() {
         InfoReader infoReader = new InfoReader();
         System.out.println("Podaj miesiąc ciąży: ");
@@ -64,6 +50,20 @@ public class InfoReader {
             infoReader.readFile("Miesiac9.txt");
         } else {
             System.out.println("Błędny numer miesiąca");
+        }
+    }
+
+    private void readFile(String fileName) {
+        File file = new File(fileName);
+        Scanner scanner = null;
+        try {
+            scanner = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        while (scanner.hasNext()) {
+            String line = scanner.nextLine();
+            System.out.println(line);
         }
     }
 }

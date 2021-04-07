@@ -6,36 +6,41 @@ import java.time.temporal.ChronoUnit;
 
 public class StageOfPregnancy {
 
-    public static void calculatePregnancyWeekMonthTrimestr(StageOfPregnancy stageOfPregnancy, LocalDate firstDayOfTheLastMenstrual, LocalDate currentDate) {
-        long weeksBetween = ChronoUnit.WEEKS.between(firstDayOfTheLastMenstrual, currentDate);
-        long pregnancyWeek = (weeksBetween + 1);
+    long pregnancyWeek;
+
+    public void showWeekMonthTrimestrInfo(LocalDate firstDayOfTheLastMenstrual) {
+        calculatePregnancyWeek(firstDayOfTheLastMenstrual, LocalDate.now());
         if (pregnancyWeek >= 3 && pregnancyWeek <= 42) {
-            System.out.println(pregnancyWeek + " tydzień");
-            stageOfPregnancy.calculatePrengancyMonth(firstDayOfTheLastMenstrual, LocalDate.now());
-            stageOfPregnancy.calculatePrengancyTrimestr(firstDayOfTheLastMenstrual, LocalDate.now());
+            showPregnancyWeek(pregnancyWeek);
+            calculateAndShowPrengancyMonth(firstDayOfTheLastMenstrual, LocalDate.now());
+            calculateAndShowPrengancyTrimestr(firstDayOfTheLastMenstrual, LocalDate.now());
             System.out.println("Gratulacje!\n");
-        } else if (firstDayOfTheLastMenstrual.isAfter(LocalDate.now())) {
-            System.out.println("Błędna data, spróbuj jeszcze raz.\n");
-            return;
         } else {
             System.out.println("Nie jesteś w ciąży...\n");
         }
     }
 
-    public void calculatePrengancyMonth(LocalDate firstDayOfTheLastMenstrual, LocalDate currentDate) {
+    private void calculatePregnancyWeek(LocalDate firstDayOfTheLastMenstrual, LocalDate currentDate) {
+        long weeksBetween = ChronoUnit.WEEKS.between(firstDayOfTheLastMenstrual, currentDate);
+        pregnancyWeek = (weeksBetween + 1);
+    }
+
+    private void showPregnancyWeek(long pregnancyWeek) {
+        System.out.println(pregnancyWeek + " tydzień");
+    }
+
+    private void calculateAndShowPrengancyMonth(LocalDate firstDayOfTheLastMenstrual, LocalDate currentDate) {
         Period period = Period.between(firstDayOfTheLastMenstrual, currentDate);
         int pregnancyMonth = (period.getMonths() + 1);
         if (pregnancyMonth < 10) {
-            System.out.println(pregnancyMonth + " miesiąc ciąży");
+            System.out.println(pregnancyMonth + " miesiąc");
         }
     }
 
-    public void calculatePrengancyTrimestr(LocalDate firstDayOfTheLastMenstrual, LocalDate currentDate) {
+    private void calculateAndShowPrengancyTrimestr(LocalDate firstDayOfTheLastMenstrual, LocalDate currentDate) {
         Period period = Period.between(firstDayOfTheLastMenstrual, currentDate);
         int pregnancyMonth = (period.getMonths() + 1);
-        if (pregnancyMonth > 9) {
-            System.out.println("Nie jesteś w ciąży");
-        } else if (pregnancyMonth < 4) {
+        if (pregnancyMonth < 4) {
             System.out.println("1 trymestr");
         } else if (pregnancyMonth >= 4 && pregnancyMonth < 7) {
             System.out.println("2 trymestr");
