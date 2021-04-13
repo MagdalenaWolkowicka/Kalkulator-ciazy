@@ -2,12 +2,11 @@ package pl.edu.pg.functions;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class DueDate {
 
-    LocalDate dateOfDelivery;
+    private LocalDate dateOfDelivery;
 
     public void calculateDateOfBirth(LocalDate firstDayOfTheLastMenstrual) {
         String dueDate = "Twój orientacyjny termin porodu to: ";

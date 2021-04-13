@@ -3,10 +3,12 @@ package pl.edu.pg.functions;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.temporal.ChronoUnit;
+import java.util.Scanner;
 
 public class StageOfPregnancy {
 
-    long pregnancyWeek;
+    private long pregnancyWeek;
+
 
     public void showWeekMonthTrimestrInfo(LocalDate firstDayOfTheLastMenstrual) {
         calculatePregnancyWeek(firstDayOfTheLastMenstrual, LocalDate.now());
@@ -15,9 +17,17 @@ public class StageOfPregnancy {
             calculateAndShowPrengancyMonth(firstDayOfTheLastMenstrual, LocalDate.now());
             calculateAndShowPrengancyTrimestr(firstDayOfTheLastMenstrual, LocalDate.now());
             System.out.println("Gratulacje!\n");
-        } else {
+        } else if (pregnancyWeek < 3 || pregnancyWeek > 42) {
             System.out.println("Nie jesteś w ciąży...\n");
         }
+    }
+
+    public LocalDate firstDayOfTheLastMenstrualQuestionReturnDay() {
+        System.out.println("Podaj datę pierwszego dnia ostatniej miesiączki (yyyy-MM-dd)");
+        Scanner scanner = new Scanner(System.in);
+        String date = scanner.next();
+        LocalDate firstDayOfTheLastMenstrual = LocalDate.parse(date);
+        return firstDayOfTheLastMenstrual;
     }
 
     private void calculatePregnancyWeek(LocalDate firstDayOfTheLastMenstrual, LocalDate currentDate) {

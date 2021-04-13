@@ -1,5 +1,7 @@
 package pl.edu.pg.functions;
 
+import pl.edu.pg.Calculator;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
@@ -8,7 +10,7 @@ import java.util.Scanner;
 
 public class InfoReader {
 
-    int pregnancyMonth;
+    private int pregnancyMonth;
 
     public void askAboutTheMonthOfPregnancyAndShowInfo() {
         InfoReader infoReader = new InfoReader();

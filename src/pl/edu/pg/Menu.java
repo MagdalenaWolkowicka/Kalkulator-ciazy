@@ -1,12 +1,14 @@
 package pl.edu.pg;
 
+import java.util.ArrayList;
+
 public class Menu {
 
     public enum Options {
-        EXIT("Wyjście"),
-        STAGE_OF_PREGNANCY("Sprawdź na jakim etapie ciąży jesteś"),
-        DUE_DATE("Wylicz termin porodu"),
-        INFO("Informacje");
+        STAGE_OF_PREGNANCY("1. Sprawdź na jakim etapie ciąży jesteś"),
+        DUE_DATE("2. Wylicz termin porodu"),
+        INFO("3. Informacje"),
+        EXIT("0. Wyjście");
 
         private String value;
 
@@ -22,9 +24,11 @@ public class Menu {
     Options[] options = Options.values();
 
     public void showMenu() {
-        for (int i = 1; i < options.length; i++) {
-            System.out.println(i + ". " + options[i].getValue());
+        ArrayList<String> listMenu = new ArrayList<>();
+        for (int i = 0; i < options.length; i++) {
+            listMenu.add(options[i].getValue());
         }
-        System.out.println(0 + ". " + Options.EXIT.getValue());
+        String optionsToChoose = String.join("\n", listMenu);
+        System.out.println(optionsToChoose);
     }
 }
