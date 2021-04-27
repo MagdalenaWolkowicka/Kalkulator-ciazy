@@ -1,6 +1,7 @@
 package pl.edu.pg;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Menu {
 
@@ -24,7 +25,7 @@ public class Menu {
     Options[] options = Options.values();
 
     public void showMenu() {
-        ArrayList<String> listMenu = new ArrayList<>();
+        List<String> listMenu = new ArrayList<>();
         for (int i = 0; i < options.length; i++) {
             listMenu.add(options[i].getValue());
         }

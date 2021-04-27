@@ -22,7 +22,7 @@ public class StageOfPregnancy {
         }
     }
 
-    public LocalDate firstDayOfTheLastMenstrualQuestionReturnDay() {
+    public LocalDate getFirstDayOfTheLastMenstrualReturnDay() {
         System.out.println("Podaj datę pierwszego dnia ostatniej miesiączki (yyyy-MM-dd)");
         Scanner scanner = new Scanner(System.in);
         String date = scanner.next();

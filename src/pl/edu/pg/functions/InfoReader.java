@@ -1,7 +1,5 @@
 package pl.edu.pg.functions;
 
-import pl.edu.pg.Calculator;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
@@ -61,7 +59,7 @@ public class InfoReader {
         try {
             scanner = new Scanner(file);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("Failed to read file: " + e.getMessage());
         }
         while (scanner.hasNext()) {
             String line = scanner.nextLine();

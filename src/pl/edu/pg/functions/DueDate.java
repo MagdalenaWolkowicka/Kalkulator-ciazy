@@ -2,20 +2,17 @@ package pl.edu.pg.functions;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.util.Scanner;
 
 public class DueDate {
 
     private LocalDate dateOfDelivery;
+    StageOfPregnancy stageOfPregnancy = new StageOfPregnancy();
 
     public void calculateDateOfBirth(LocalDate firstDayOfTheLastMenstrual) {
         String dueDate = "Twój orientacyjny termin porodu to: ";
         String dueDateInThePast = "Twój termin porodu wypadał: ";
         if (firstDayOfTheLastMenstrual == null) {
-            System.out.println("Podaj datę pierwszego dnia ostatniej miesiączki (yyyy-MM-dd)");
-            Scanner scanner = new Scanner(System.in);
-            String date = scanner.next();
-            firstDayOfTheLastMenstrual = LocalDate.parse(date);
+            firstDayOfTheLastMenstrual = stageOfPregnancy.getFirstDayOfTheLastMenstrualReturnDay();
             showDateOfBirth(firstDayOfTheLastMenstrual, dueDate, dueDateInThePast);
         } else {
             showDateOfBirth(firstDayOfTheLastMenstrual, dueDate, dueDateInThePast);
