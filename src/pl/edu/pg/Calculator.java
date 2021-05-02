@@ -11,11 +11,11 @@ public class Calculator {
 
     private boolean exitCalculator = false;
 
-    StageOfPregnancy stageOfPregnancy = new StageOfPregnancy();
-    DueDate dueDate = new DueDate();
-    Scanner scanner = new Scanner(System.in);
-    PregnancyInfoReader pregnancyInfoReader = new PregnancyInfoReader();
-    LocalDate firstDayOfTheLastMenstrual;
+    private StageOfPregnancy stageOfPregnancy = new StageOfPregnancy();
+    private DueDate dueDate = new DueDate();
+    private Scanner scanner = new Scanner(System.in);
+    private PregnancyInfoReader pregnancyInfoReader = new PregnancyInfoReader();
+    private LocalDate firstDayOfTheLastMenstrual;
 
     public void start() {
 
