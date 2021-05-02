@@ -1,7 +1,7 @@
 package pl.edu.pg;
 
 import pl.edu.pg.functions.DueDate;
-import pl.edu.pg.functions.InfoReader;
+import pl.edu.pg.functions.PregnancyInfoReader;
 import pl.edu.pg.functions.StageOfPregnancy;
 
 import java.time.LocalDate;
@@ -14,7 +14,7 @@ public class Calculator {
     StageOfPregnancy stageOfPregnancy = new StageOfPregnancy();
     DueDate dueDate = new DueDate();
     Scanner scanner = new Scanner(System.in);
-    InfoReader infoReader = new InfoReader();
+    PregnancyInfoReader pregnancyInfoReader = new PregnancyInfoReader();
     LocalDate firstDayOfTheLastMenstrual;
 
     public void start() {
@@ -35,8 +35,7 @@ public class Calculator {
                 showStageOfPregnancy();
                 break;
             case "2":
-                dueDate.calculateDateOfBirth(firstDayOfTheLastMenstrual);
-                dueDate.calculateDayOfWeek();
+                showDueDate();
                 break;
             case "3":
                 showPregnancyInfo();
@@ -58,26 +57,27 @@ public class Calculator {
         }
     }
 
-    private void getFirstDayOfTheLastMenstrual() {
-        System.out.println("Podaj datę pierwszego dnia ostatniej miesiączki (yyyy-MM-dd)");
-        Scanner scanner = new Scanner(System.in);
-        String date = scanner.next();
-        firstDayOfTheLastMenstrual = LocalDate.parse(date);
-    }
-
-    private boolean checkIfTheDateIsCorrect() {
-        return firstDayOfTheLastMenstrual.isBefore(LocalDate.now());
+    private void showDueDate() {
+        if (firstDayOfTheLastMenstrual == null) {
+            firstDayOfTheLastMenstrual = stageOfPregnancy.getFirstDayOfTheLastMenstrualReturnDay();
+        }
+        dueDate.calculateDateOfBirth(firstDayOfTheLastMenstrual);
+        dueDate.calculateDayOfWeek();
     }
 
     private void showPregnancyInfo() {
         if (firstDayOfTheLastMenstrual == null) {
-            infoReader.askAboutTheMonthOfPregnancyAndShowInfo();
+            pregnancyInfoReader.askAboutTheMonthOfPregnancyAndShowInfo();
         } else {
             if (firstDayOfTheLastMenstrual.plusDays(280).isAfter(LocalDate.now())) {
-                infoReader.calculatePregnancyMonthAndShowInfo(firstDayOfTheLastMenstrual, LocalDate.now());
+                pregnancyInfoReader.calculatePregnancyMonthAndShowInfo(firstDayOfTheLastMenstrual, LocalDate.now());
             } else {
-                System.out.println("Błędne dane");
+                System.out.println("Błędne dane\n");
             }
         }
+    }
+
+    private boolean checkIfTheDateIsCorrect() {
+        return firstDayOfTheLastMenstrual.isBefore(LocalDate.now());
     }
 }

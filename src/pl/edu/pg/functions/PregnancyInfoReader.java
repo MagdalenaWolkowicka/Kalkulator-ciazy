@@ -6,48 +6,46 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.Scanner;
 
-public class InfoReader {
-
-    private int pregnancyMonth;
+public class PregnancyInfoReader {
 
     public void askAboutTheMonthOfPregnancyAndShowInfo() {
-        InfoReader infoReader = new InfoReader();
+        PregnancyInfoReader pregnancyInfoReader = new PregnancyInfoReader();
         System.out.println("Podaj miesiąc ciąży: ");
         Scanner scanner = new Scanner(System.in);
         int pregnancyMonth = scanner.nextInt();
         if (pregnancyMonth >= 1 && pregnancyMonth <= 9) {
-            readPregnancyInfoFromFile(infoReader, pregnancyMonth);
+            readPregnancyInfoFromFile(pregnancyInfoReader, pregnancyMonth);
         } else {
-            System.out.println("Błędny numer miesiąca");
+            System.out.println("Błędny numer miesiąca\n");
         }
     }
 
     public void calculatePregnancyMonthAndShowInfo(LocalDate firstDayOfTheLastMenstrual, LocalDate currentDate) {
-        InfoReader infoReader = new InfoReader();
+        PregnancyInfoReader pregnancyInfoReader = new PregnancyInfoReader();
         Period period = Period.between(firstDayOfTheLastMenstrual, currentDate);
-        pregnancyMonth = (period.getMonths() + 1);
-        readPregnancyInfoFromFile(infoReader, pregnancyMonth);
+        int pregnancyMonth = (period.getMonths() + 1);
+        readPregnancyInfoFromFile(pregnancyInfoReader, pregnancyMonth);
     }
 
-    private void readPregnancyInfoFromFile(InfoReader infoReader, int pregnancyMonth) {
+    private void readPregnancyInfoFromFile(PregnancyInfoReader pregnancyInfoReader, int pregnancyMonth) {
         if (pregnancyMonth == 1) {
-            infoReader.readFile("Miesiac1.txt");
+            pregnancyInfoReader.readFile("Miesiac1.txt");
         } else if (pregnancyMonth == 2) {
-            infoReader.readFile("Miesiac2.txt");
+            pregnancyInfoReader.readFile("Miesiac2.txt");
         } else if (pregnancyMonth == 3) {
-            infoReader.readFile("Miesiac3.txt");
+            pregnancyInfoReader.readFile("Miesiac3.txt");
         } else if (pregnancyMonth == 4) {
-            infoReader.readFile("Miesiac4.txt");
+            pregnancyInfoReader.readFile("Miesiac4.txt");
         } else if (pregnancyMonth == 5) {
-            infoReader.readFile("Miesiac5.txt");
+            pregnancyInfoReader.readFile("Miesiac5.txt");
         } else if (pregnancyMonth == 6) {
-            infoReader.readFile("Miesiac6.txt");
+            pregnancyInfoReader.readFile("Miesiac6.txt");
         } else if (pregnancyMonth == 7) {
-            infoReader.readFile("Miesiac7.txt");
+            pregnancyInfoReader.readFile("Miesiac7.txt");
         } else if (pregnancyMonth == 8) {
-            infoReader.readFile("Miesiac8.txt");
+            pregnancyInfoReader.readFile("Miesiac8.txt");
         } else if (pregnancyMonth == 9) {
-            infoReader.readFile("Miesiac9.txt");
+            pregnancyInfoReader.readFile("Miesiac9.txt");
         } else {
             System.out.println("Błędny numer miesiąca");
         }
